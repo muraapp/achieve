@@ -17,6 +17,8 @@
   <%= f.label :content %>
   <%= f.text_field :content, class: 'form-control' %>
   <br>
+  <p>[ユーザID]<%= @blog.user_id %></p>
+  <p>[ユーザ名]<%= @blog.user.name %></p>
   <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
 <% end %>
 
