@@ -10,14 +10,14 @@ class User < ActiveRecord::Base
                         name:     auth.extra.raw_info.name,
                         provider: auth.provider,
                         uid:      auth.uid,
-                 email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
-                 image_url:   auth.info.image,
-                 password: Devise.friendly_token[0, 20]
-             )
+                        email:    auth.info.email ||= "#{auth.uid}-#{auth.provider}@example.com",
+                        image_url:   auth.info.image,
+                        password: Devise.friendly_token[0, 20]
+        )
         user.skip_confirmation!
         user.save(validate: false)
-        end
-        user
+      end
+      user
   end
 
   def self.find_for_twitter_oauth(auth, signed_in_resource = nil)
@@ -39,5 +39,19 @@ class User < ActiveRecord::Base
   end
   def self.create_unique_string
     SecureRandom.uuid
+  end
+
+  # allow users to update their accounts without passwords
+  def update_without_current_password(params, *options)
+    params.delete(:current_password)
+
+    if params[:password].blank? && params[:password_confirmation].blank?
+      params.delete(:password)
+      params.delete(:password_confirmation)
+    end
+
+    result = update_attributes(params, *options)
+    clean_up_passwords
+    result
   end
 end

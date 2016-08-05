@@ -5,50 +5,35 @@
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
 <%= f.error_messages! %>
 
+<div class="field">
+  <%= f.label :メールアドレス %><br />
+  <%= f.email_field :email, autofocus: true, class: "form-control" %>
+</div>
 
-  <div class="field">
-    <%= f.label :メールアドレス %><br />
-    <%= f.email_field :email, autofocus: true, class: "form-control" %>
-  </div>
+<!-- 名前入力用のフィールドを追加 -->
+<div class="field">
+  <%= f.label :名前 %><br />
+  <%= f.text_field :name, class: "form-control" %>
+</div>
 
-  <!-- 名前入力用のフィールドを追加 -->
-  <div class="field">
-    <%= f.label :名前 %><br />
-    <%= f.text_field :name, class: "form-control" %>
-  </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(変更しない場合は空のまま)</i><br />
-    <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> 文字以上です</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :現在のパスワード %><br />
-    <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-  </div>
-
-  <div class="field">
-    <%= profile_img(@user) if profile_img(@user) %>
-    <%= f.file_field :avatar %>
-    <%= f.hidden_field :avatar_cache %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "更新", class: "btn btn-primary btn-block" %>
-  </div>
+<% if false %>
+  <div><%= f.label :current_password %> <i><%= t(".current_password_warning") %></i><br />
+  <%= f.password_field :current_password %></div>
 <% end %>
 
-<h3>アカウント削除</h3>
+<div class="field">
+  <%= profile_img(@user) if profile_img(@user) %>
+  <%= f.file_field :avatar %>
+  <%= f.hidden_field :avatar_cache %>
+</div>
 
-<p>削除しますか? <%= button_to "アカウント削除", registration_path(resource_name), data: { confirm: "本当に削除しますか?" }, method: :delete,class:'btn btn-danger' %></p>
+<div class="actions">
+  <%= f.submit "更新", class: "btn btn-primary btn-block" %>
+</div>
+
+
+<% end %>
 
 <%= link_to "戻る", :back, class: "btn btn-primary btn-block" %>
 </div>

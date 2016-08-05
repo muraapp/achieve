@@ -10,6 +10,7 @@
   <br>
   <p>[ユーザID]<%= @blog.user_id %></p>
   <p>[ユーザ名]<%= @blog.user.name if @blog.user %></p>
+
   <%= f.submit '投稿', class: 'btn btn-primary btn-block' %>
 <% end %>
 

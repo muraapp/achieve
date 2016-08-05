@@ -51,8 +51,8 @@ ActiveRecord::Schema.define(version: 20160728103402) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "admin",                  default: false
-    t.string   "uid"
-    t.string   "provider"
+    t.string   "uid",                    default: "",    null: false
+    t.string   "provider",               default: "",    null: false
     t.string   "image_url"
     t.string   "avatar"
   end
@@ -60,5 +60,6 @@ ActiveRecord::Schema.define(version: 20160728103402) do
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
 end
