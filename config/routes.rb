@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
+
+  get 'relationships/create'
+
+  get 'relationships/destroy'
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
     registrations: "users/registrations",
@@ -6,7 +11,7 @@ Rails.application.routes.draw do
   }
   resources :blogs do
     resources :comments
-    
+
     collection do
       post :confirm
     end
@@ -23,4 +28,7 @@ Rails.application.routes.draw do
   post 'contacts/new' => 'contacts#new'
 
   root 'top#index'
+
+  resources :users, only: [:index, :show]
+  resources :relationships, only: [:create, :destroy]
 end
