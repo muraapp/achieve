@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-
+  resources :tasks
   get 'relationships/create'
 
   get 'relationships/destroy'
@@ -29,6 +29,17 @@ Rails.application.routes.draw do
 
   root 'top#index'
 
-  resources :users, only: [:index, :show]
+  resources :users, only: [:index] do
+    resources :tasks
+    resources :submit_requests , shallow: true do
+      get 'approve'
+      get 'unapprove'
+      get 'reject'
+      collection do
+        get 'inbox'
+      end
+    end
+  end
+
   resources :relationships, only: [:create, :destroy]
 end
