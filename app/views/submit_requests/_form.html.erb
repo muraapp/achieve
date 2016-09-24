@@ -1,4 +1,4 @@
-<%= form_for([@user, @submit_request],remote: true) do |f| %>
+<%= form_for([@user, @submit_request]) do |f| %>
   <p>
     <%= f.collection_select :task_id, @tasks, :id, :title, {}, class: "form-control title" %>
     <%= f.collection_select :charge_id, @users, :id, :name, {}, class: "form-control" %>

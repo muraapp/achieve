@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
-  resources :tasks
-  get 'relationships/create'
 
-  get 'relationships/destroy'
+
+  resources :tasks
+  
 
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   devise_for :users, controllers: {
@@ -42,4 +42,8 @@ Rails.application.routes.draw do
   end
 
   resources :relationships, only: [:create, :destroy]
+
+  resources :conversations do
+    resources :messages
+  end
 end

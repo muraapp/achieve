@@ -1,4 +1,4 @@
-<!-- <% if submit_requests.present? %> -->
+<% if submit_requests.present? %>
     <div class="task col-md-10 col-md-offset-1 col-sm-10 col-sm-offset-1 col-xs-12 table-responsive">
       <table class="table table-hover">
         <thead>
@@ -31,7 +31,6 @@
                   <td>
                     <%= link_to '承認', submit_request_approve_path(submit_request), remote: true %>
                     <%= link_to '却下', submit_request_unapprove_path(submit_request), remote: true %>
-
                   </td>
               <% end %>
               <% if submit_request.user_id == current_user.id %>
@@ -46,4 +45,4 @@
         </tbody>
       </table>
     </div>
-<!-- <% end %> -->
+<% end %>
