@@ -26,6 +26,10 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.build(message_params)
+    if @message.blank?
+      redirect_to conversation_messages_path(@conversation), notice: "メッセージ空白"
+    end
+    
     if @message.save
       redirect_to conversation_messages_path(@conversation)
     end
