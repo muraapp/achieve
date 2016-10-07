@@ -4,11 +4,13 @@ module NotificationsHelper
   end
 
   def test(notice)
-    if notice.read = true
+    if notice.read == true
       "既読"
     else
       "未読"
     end
+
+
   end
 
 

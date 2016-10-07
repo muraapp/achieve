@@ -6,6 +6,7 @@
       <span><%= notification.read %></span>
       <%= test(notification) %>
 
+
       <p>
         <%= notification.comment.user.try(:name) %>さんが
         あなたのブログ（<%= link_to "#{notification.comment.blog.title}", blog_path(notification.comment.blog, notification_id: notification.id) %>）にコメントしました。
