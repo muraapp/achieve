@@ -3,7 +3,7 @@
 <% if @over_ten %>
   <%= link_to '以前のメッセージ', '?m=all' %>
 <% end %>
-<%= notice %>
+<h2><%= notice %></h2>
 <div class="ui segment">
   <% @messages.each do |message| %>
     <% if message.body %>
