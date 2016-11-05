@@ -1,5 +1,5 @@
 Rails.application.configure do
-  config.action_mailer.default_url_options = { :host => 'guarded-inlet-66278.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => '52.197.65.134' }
   ActionMailer::Base.delivery_method = :smtp
   ActionMailer::Base.smtp_settings =
   {
