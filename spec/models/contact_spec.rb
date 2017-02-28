@@ -9,36 +9,36 @@ describe Contact do
 
   # 名前がなければ無効であること
   it "is invalid without a name" do
-    contact = Contact.new
+    contact = Contact.new(email: 'sample@sample.com', content: '暑いです')
     expect(contact).not_to be_valid
   end
 
   it "is invalid without a name" do
-    contact = Contact.new
+    contact = Contact.new(email: 'sample@sample.com', content: '暑いです')
     contact.valid?
     expect(contact.errors[:name]).to include("を入力してください")
   end
 
   # メールアドレスがなければ無効であること
   it "is invalid without a email" do
-    contact = Contact.new
+    contact = Contact.new(name: 'sample', content: '暑いです')
     expect(contact).not_to be_valid
   end
 
   it "is invalid without a email" do
-    contact = Contact.new
+    contact = Contact.new(name: 'sample', content: '暑いです')
     contact.valid?
     expect(contact.errors[:email]).to include("を入力してください")
   end
 
   # 内容がなければ無効であること
   it "is invalid without a content" do
-    contact = Contact.new
+    contact = Contact.new(name: 'sample',email: 'sample@sample.com' )
     expect(contact).not_to be_valid
   end
 
   it "is invalid without a content" do
-    contact = Contact.new
+    contact = Contact.new(name: 'sample',email: 'sample@sample.com' )
     contact.valid?
     expect(contact.errors[:content]).to include("を入力してください")
   end
